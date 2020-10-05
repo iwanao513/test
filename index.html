@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>WebAPI test</title>
+  <style type="text/css">
+  /* 見やすいように文字を大きく */
+  body,
+  input,
+  button {
+    font-size: 25px;
+  }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    
+    <table id="chatLogs"></table>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+$( () => {
+  const socket = io(); // C02. ソケットへの接続
+    
+
+    // C04. server_to_clientイベント・データを受信する
+    socket.on("server_to_client", function(data){appendMsg(data.value)});
+
+    function appendMsg(text) {
+        var size=text.length
+        for(let i=0; i<size; i++){
+        $("#chatLogs").prepend("<tr>"+"<td>" + text[i][0] + "</td>"+"<td>" + text[i][1] + "</td>"+"</tr>");
+        }
+    }
+    
+
+
+  });  
+　　/*
+    $("form").submit(function(e){
+        var message = $("#msgForm").val();
+        $("#msgForm").val('');
+        if (isEnter) {
+          message = "[" + name + "]: " + message;
+            // C03. client_to_serverイベント・データを送信する
+            socket.emit("client_to_server", {value : message});
+        } else {
+            name = message;
+            var entryMessage = name + "さんが入室しました。";
+            // C05. client_to_server_broadcastイベント・データを送信する
+            socket.emit("client_to_server_broadcast", {value : entryMessage});
+            // C06. client_to_server_personalイベント・データを送信する
+            socket.emit("client_to_server_personal", {value : name});
+            changeLabel();
+        }
+        e.preventDefault();
+    });
+
+    function changeLabel() {
+        $("label").text("メッセージ：");
+        $("button").text("送信");
+        isEnter = true;
+    }
+    */
+
+</script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+  <!-- <script type="text/javascript" src="api.js"></script>-->
+  <!-- <script type="text/javascript" src="api2.js"></script> -->
+</body>
+</html>
