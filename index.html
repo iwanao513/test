@@ -11,7 +11,8 @@
     font-size: 25px;
   }
   </style>
-
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 </head>
 
 <body>
@@ -19,10 +20,9 @@
     
     <table id="chatLogs"></table>
 </div>
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
 <script type="text/javascript">
-$( () => {
+
   const socket = io(); // C02. ソケットへの接続
     
 
@@ -38,7 +38,7 @@ $( () => {
     
 
 
-  });  
+
 　　/*
     $("form").submit(function(e){
         var message = $("#msgForm").val();
